@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PerfectPay.MainPage"
+             xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+             BackgroundColor="#323232">
+
+    <ContentPage.Resources>
+        <Color x:Key="SelectionColor">#444444</Color>
+        <Color x:Key="LightColor">#d6d6d6</Color>
+        <Color x:Key="DarkColor">#4fd8eb</Color>
+    </ContentPage.Resources>
+
+    <Grid Margin="10,10,10,0"
+          RowSpacing="60"
+          RowDefinitions="Auto,Auto,Auto,Auto,*"
+          ColumnDefinitions="110,*">
+
+        <Label Text="Split in total: " 
+               VerticalTextAlignment="Center" />
+
+        <Frame Grid.Column="1"
+               BorderColor="Transparent"
+               BackgroundColor="{StaticResource SelectionColor}"
+               Padding="0"
+               IsClippedToBounds="True">
+
+            <Grid ColumnDefinitions="*,*,*">
+                <Button BackgroundColor="{StaticResource Primary}"
+                        Text="-"
+                        CornerRadius="10"
+                        Clicked="Add_Remove_Clicked"
+                        TextColor="White"
+                        FontSize="Large" />
+
+                <Label Text="1"
+                       x:Name="lblNumberPerson"
+                       Grid.Column="1"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center" />
+
+                <Button BackgroundColor="{StaticResource Primary}"
+                        Text="+"
+                        Clicked="Add_Remove_Clicked"
+                        Grid.Column="2"
+                        CornerRadius="10"
+                        TextColor="White"
+                        FontSize="Large" />
+            </Grid>
+        </Frame>
+        
+        <Label Text="Enter your bill: " 
+               VerticalTextAlignment="Center"
+               Grid.Row="1" />
+
+        <Frame CornerRadius="10"
+               Grid.Row="1"
+               Grid.Column="2"
+               Padding="0"
+               IsClippedToBounds="True">
+            
+            <Entry Text="0.0"
+                   BackgroundColor="{StaticResource SelectionColor}"
+                   x:Name="entrybill"
+                   Completed="Entrybill_Completed"
+                   Keyboard="Numeric" />
+        </Frame>
+
+        <Label Text="Choose you tip: "
+               Grid.Row="2" 
+               VerticalTextAlignment="Center"/>
+
+        <HorizontalStackLayout Grid.Row="2"
+                               Grid.Column="1"
+                               Spacing="20"
+                               HeightRequest="70"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+
+            <Button CornerRadius="10"
+                    Clicked="Percentage_Button_clicked"
+                    Text="10%"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource Primary}" />
+
+            <Button CornerRadius="10"
+                    Text="15%"
+                    TextColor="White"
+                    Clicked="Percentage_Button_clicked"
+                    BackgroundColor="{StaticResource Primary}" />
+
+            <Button CornerRadius="10"
+                    BackgroundColor="{StaticResource Primary}"
+                    Text="20%"
+                    Clicked="Percentage_Button_clicked"
+                    TextColor="White" />
+        </HorizontalStackLayout>
+
+        <Label Text="Tip: "
+               Grid.Row="3" />
+
+        <sliders:SfSlider Minimum="0"
+                          x:Name="PercentageSlider"
+                          Maximum="20"
+                          ValueChanged="PercentageSlider_ValueChanged"
+                          Value="1"
+                          Interval="2"
+                          ShowTicks="True"
+                          ShowLabels="True"
+                          Grid.Column="1"
+                          Grid.Row="3">
+            <sliders:SfSlider.LabelStyle>
+                <sliders:SliderLabelStyle ActiveTextColor="#ffffff"
+                                          InactiveTextColor="#ffffff"
+                                          ActiveFontAttributes="Italic"
+                                          InactiveFontAttributes="Italic"
+                                          ActiveFontSize="10"
+                                          InactiveFontSize="10" />
+            </sliders:SfSlider.LabelStyle>
+        </sliders:SfSlider>
+
+        <Frame CornerRadius="10"
+               x:Name="TotalBillContaner"
+               Grid.Row="4"
+               BackgroundColor="#424242"
+               Grid.ColumnSpan="3"
+               Padding="10"
+               IsClippedToBounds="True"
+               Margin="10">
+
+            <Grid RowDefinitions="*,*" ColumnDefinitions="*,*,*">
+
+                <Label Text="$0.00"
+                       x:Name="lblBill"
+                       Grid.RowSpan="2"
+                       FontSize="30"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center" />
+
+                <BoxView WidthRequest="2"
+                         Grid.RowSpan="2"
+                         Grid.Column="1" />
+
+                <VerticalStackLayout Grid.Column="3"
+                                     Grid.RowSpan="2"
+                                     HorizontalOptions="CenterAndExpand"
+                                     Grid.ColumnSpan="3"
+                                     VerticalOptions="CenterAndExpand">
+                    
+                    <Label Text="Subtotal" />
+                    <Label Text="$0.00" x:Name="lblSub" />
+                    
+                    <BoxView HeightRequest="1" WidthRequest="200" Margin="10" />
+                    <Label Text="TIP" />
+                    <Label Text="$0.00" x:Name="lblTip" />
+                </VerticalStackLayout>
+
+
+            </Grid>
+        </Frame>
+    </Grid>
+    
+</ContentPage>
