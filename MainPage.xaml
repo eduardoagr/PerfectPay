@@ -103,7 +103,7 @@
                           x:Name="PercentageSlider"
                           Maximum="20"
                           ValueChanged="PercentageSlider_ValueChanged"
-                          Value="1"
+                          Value="0"
                           Interval="2"
                           ShowTicks="True"
                           ShowLabels="True"
@@ -128,7 +128,7 @@
                IsClippedToBounds="True"
                Margin="10">
 
-            <Grid RowDefinitions="*,*" ColumnDefinitions="*,*,*">
+            <Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*,*">
 
                 <Label Text="$0.00"
                        x:Name="lblBill"

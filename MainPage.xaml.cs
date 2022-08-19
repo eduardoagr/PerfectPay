@@ -13,6 +13,10 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+
+        CalculateTotlal();
+
+        TotalBillContaner.IsVisible = false;
     }
 
     private void Add_Remove_Clicked(object sender, EventArgs e)
@@ -59,6 +63,7 @@ public partial class MainPage : ContentPage
         {
             bill = val;
         }
+        TotalBillContaner.IsVisible = true;
         CalculateTotlal();
     }
 
@@ -67,16 +72,25 @@ public partial class MainPage : ContentPage
         //Total tip
         var totaltip = (bill * tip) / 100;
 
-        //Tip per person
-        var tipPerson = (totaltip / NumberPeople);
-        lblTip.Text = $"{tipPerson:C}";
+        if (lblTip != null)
+        {
+            //Tip per person
+            var tipPerson = (totaltip / NumberPeople);
+            lblTip.Text = $"{tipPerson:C}";
+        }
 
-        //Subtotal
-        var subtotal = (bill / NumberPeople);
-        lblSub.Text = $"{subtotal:C}";
+        if (lblSub != null)
+        {
+            //Subtotal
+            var subtotal = (bill / NumberPeople);
+            lblSub.Text = $"{subtotal:C}";
+        }
 
-        var total = (bill + totaltip) / NumberPeople;
-        lblBill.Text = $"{total:C}";
+        if (lblBill != null)
+        {
+            var total = (bill + totaltip) / NumberPeople;
+            lblBill.Text = $"{total:C}";
+        }
     }
 
     private void PercentageSlider_ValueChanged(object sender, SliderValueChangedEventArgs e)
